@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Table</title>
+    <style>
+      .portfolio-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-size: 18px;
+        text-align: left;
+      }
+      .portfolio-table th,
+      .portfolio-table td {
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+      }
+      .portfolio-table th {
+        background-color: #f4f4f4;
+      }
+      .portfolio-table tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+    </style>
+  </head>
+  <body>
+    <input
+      type="text"
+      id="search-input"
+      placeholder="Search for any string..."
+    />
+
+    <div id="table-container">
+      <!-- Table will be generated here -->
+    </div>
+
+    <script>
+      // Wait until page is loaded
+      document.addEventListener("DOMContentLoaded", function () {
+        fetch("Students.csv")
+          .then((response) => response.text())
+          .then((data) => {
+            // Get all the rows in the data file
+            const rows = data.split("\n").map((row) => row.split(","));
+            // Extract the header, leaving just data in 'rows'
+            const headers = rows.shift();
+
+            // Create the HTML to display the portfolio data
+            const tableContainer = document.getElementById("table-container");
+
+            // Add Header
+            let tableHTML = `
+                        <table class="portfolio-table">
+                            <thead>
+                                <tr>
+                                    ${headers
+                                      .map(
+                                        (header) => `<th>${header.trim()}</th>`
+                                      )
+                                      .join("")}
+                                </tr>
+                            </thead>
+                            <tbody id="table-body">
+                    `;
+
+            // Add each portfolio item
+            rows.forEach((row) => {
+              tableHTML += `
+                            <tr>
+                                ${row
+                                  .map((col) => `<td>${col.trim()}</td>`)
+                                  .join("")}
+                            </tr>
+                        `;
+            });
+
+            tableHTML += `
+                            </tbody>
+                        </table>
+                    `;
+
+            // Replace the placeholder with the generated HTML
+            tableContainer.innerHTML = tableHTML;
+
+            // Add event listener for search input
+            const searchInput = document.getElementById("search-input");
+            searchInput.addEventListener("input", function () {
+              const filter = searchInput.value.toLowerCase();
+              const tableBody = document.getElementById("table-body");
+              const rows = tableBody.getElementsByTagName("tr");
+
+              Array.from(rows).forEach((row) => {
+                const nameCell = row.getElementsByTagName("td")[0];
+                if (nameCell) {
+                  const name = nameCell.textContent || nameCell.innerText;
+                  if (name.toLowerCase().indexOf(filter) > -1) {
+                    row.style.display = "";
+                  } else {
+                    row.style.display = "none";
+                  }
+                }
+              });
+            });
+          })
+          .catch((error) => console.error("Error fetching data:", error));
+      });
+    </script>
+  </body>
+</html>
