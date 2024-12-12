@@ -1,10 +1,12 @@
 This example shows how to
 
-- Read from a csv file to extra data
+- Read from a csv file to extract data
 - Display the data in a table in HTML
 - Provide a simple search on the name field
 
-Things that should further be done:
+There's also a cardFormat.html file that displays some hardcoded portfolio data as cards instead of a table
+
+Things that could further be done:
 
 - Break up HTML file into CSS and JS files
 - Create different JS functions for creating the Table vs Searching

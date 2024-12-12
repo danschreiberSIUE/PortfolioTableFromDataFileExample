@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Table</title>
+    <style>
+      .user-card-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+      }
+
+      .user-card {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 20px;
+        margin: 20px;
+        display: inline-block;
+        width: 300px;
+        vertical-align: top;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      .user-card-image img {
+        width: 100%;
+        height: auto;
+        border-radius: 50%;
+      }
+      .user-card-content {
+        text-align: center;
+      }
+      .user-card-content h2 {
+        margin: 10px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!--
+      style="display: flex; flex-wrap: wrap; justify-content: space-around;"
+    >-->
+    <div style="display: grid">
+      <form
+        method="get"
+        class="pods-form-filters pods-form-filters-eportfolio"
+        action=""
+      >
+        <input
+          type="text"
+          class="pods-form-filters-search"
+          name="search"
+          value=""
+        />
+
+        <input type="submit" class="pods-form-filters-submit" value="Search" />
+      </form>
+      <div class="user-card">
+        <div class="user-card-image">
+          <p>Jane Smith</p>
+        </div>
+        <div class="user-card-content">
+          <p>Portfolio: Jane’s Awesome Page</p>
+          <p>Category: History</p>
+          <p>Cohort: 2023</p>
+        </div>
+      </div>
+      <div class="user-card">
+        <div class="user-card-image">
+          <p>John Doe</p>
+        </div>
+        <div class="user-card-content">
+          <p>Portfolio: John’s Cool Portfolio</p>
+          <p>Category: Anthropology</p>
+          <p>Cohort: 2022</p>
+        </div>
+      </div>
+      <div class="user-card">
+        <div class="user-card-image">
+          <p>Harvey Milk</p>
+        </div>
+        <div class="user-card-content">
+          <p>Portfolio: Harvey's World of Whoopee</p>
+          <p>Category: Kinesisology</p>
+          <p>Cohort: 2022</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -26,11 +26,7 @@
     </style>
   </head>
   <body>
-    <input
-      type="text"
-      id="search-input"
-      placeholder="Search for any string..."
-    />
+    <input type="text" id="search-input" placeholder="Search for name..." />
 
     <div id="table-container">
       <!-- Table will be generated here -->
@@ -39,7 +35,7 @@
     <script>
       // Wait until page is loaded
       document.addEventListener("DOMContentLoaded", function () {
-        fetch("Students.csv")
+        fetch("portfolios.csv")
           .then((response) => response.text())
           .then((data) => {
             // Get all the rows in the data file
